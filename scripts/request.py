@@ -291,7 +291,7 @@ def create_concepts(
     for dataset in datasets:
         api_concepts = f"{api_datasets}/{dataset.name}/concepts"
 
-        for concept in (json_dir / dataset.id / "conceptTrees").glob("*.concept.json"):
+        for concept in (json_dir / dataset.id / "concepts").glob("*.concept.json"):
 
             resp = session.post(
                 api_concepts, data=concept.open("rb"), headers=JSON_HEADER

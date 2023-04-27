@@ -1,0 +1,132 @@
+{
+    "name": "admission",
+    "table": "admission",
+    "inputs": [
+        {
+            "sourceFile": "admissions.csv",
+            "primary": {
+                "name": "subject_id",
+                "inputType": "STRING",
+                "inputColumn": "subject_id",
+                "operation": "COPY"
+            },
+            "output": [
+                {
+                    "name": "hadm_id",
+                    "inputType": "STRING",
+                    "inputColumn": "hadm_id",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "admittime",
+                    "inputType": "DATE",
+                    "inputColumn": "admittime",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "dischtime",
+                    "inputType": "DATE",
+                    "inputColumn": "dischtime",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "deathtime",
+                    "inputType": "DATE",
+                    "inputColumn": "deathtime",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "admission_type",
+                    "inputType": "STRING",
+                    "inputColumn": "admission_type",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "admission_location",
+                    "inputType": "STRING",
+                    "inputColumn": "admission_location",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "discharge_location",
+                    "inputType": "STRING",
+                    "inputColumn": "discharge_location",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "insurance",
+                    "inputType": "STRING",
+                    "inputColumn": "insurance",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "language",
+                    "inputType": "STRING",
+                    "inputColumn": "language",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "marital_status",
+                    "inputType": "STRING",
+                    "inputColumn": "marital_status",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "race",
+                    "inputType": "STRING",
+                    "inputColumn": "race",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "edregtime",
+                    "inputType": "DATE",
+                    "inputColumn": "edregtime",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "edouttime",
+                    "inputType": "DATE",
+                    "inputColumn": "edouttime",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "hospital_expire_flag",
+                    "inputType": "STRING",
+                    "inputColumn": "hospital_expire_flag",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "gender",
+                    "inputType": "STRING",
+                    "inputColumn": "gender",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "anchor_age",
+                    "inputType": "INTEGER",
+                    "inputColumn": "anchor_age",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "anchor_year",
+                    "inputType": "INTEGER",
+                    "inputColumn": "anchor_year",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "dod",
+                    "inputType": "DATE",
+                    "inputColumn": "dod",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "stay_duration",
+                    "operation": "DATE_RANGE",
+                    "startColumn": "admittime",
+                    "endColumn": "dischtime",
+                    "allowOpen": true
+                }
+            ]
+        }
+    ]
+}

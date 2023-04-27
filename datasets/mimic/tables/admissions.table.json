@@ -1,0 +1,80 @@
+{"name": "admission",
+"columns": [
+    {
+        "name": "hadm_id",
+        "type": "STRING"
+    },
+    {
+        "name": "admittime",
+        "type": "DATE"
+    },
+    {
+        "name": "dischtime",
+        "type": "DATE"
+    },
+    {
+        "name": "deathtime",
+        "type": "DATE"
+    },
+    {
+        "name": "admission_type",
+        "type": "STRING"
+    },
+    {
+        "name": "admission_location",
+        "type": "STRING"
+    },
+    {
+        "name": "discharge_location",
+        "type": "STRING"
+    },
+    {
+        "name": "insurance",
+        "type": "STRING"
+    },
+    {
+        "name": "language",
+        "type": "STRING"
+    },
+    {
+        "name": "marital_status",
+        "type": "STRING"
+    },
+    {
+        "name": "race",
+        "type": "STRING"
+    },
+    {
+        "name": "edregtime",
+        "type": "DATE"
+    },
+    {
+        "name": "edouttime",
+        "type": "DATE"
+    },
+    {
+        "name": "hospital_expire_flag",
+        "type": "STRING"
+    },
+    {
+        "name": "gender",
+        "type": "STRING"
+    },
+    {
+        "name": "anchor_age",
+        "type": "INTEGER"
+    },
+    {
+        "name": "anchor_year",
+        "type": "INTEGER"
+    },
+    {
+        "name": "dod",
+        "type": "DATE"
+    },
+    {
+        "name": "stay_duration",
+        "type": "DATE_RANGE"
+    }
+]
+}

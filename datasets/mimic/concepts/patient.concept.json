@@ -1,0 +1,39 @@
+{
+    "name": "patient",
+    "label": "patient",
+    "type": "TREE",
+    "connectors": [{
+        "name": "patient",
+        "table": "admission",
+        "validityDates": [
+            {
+                "name": "admission_duration",
+                "column": "admission.stay_duration"
+            }
+        ],
+        "filters": [
+            {
+                "type": "SELECT",
+                "name": "gender_filter",
+                "column": "admission.gender"
+            },
+            {
+                "type": "NUMBER",
+                "name": "age_filter",
+                "column": "admission.anchor_age"
+            }
+        ],
+        "selects": [
+            {
+                "type": "LAST",
+                "name": "age_select",
+                "column": "admission.anchor_age"
+            },
+            {
+                "type": "LAST",
+                "name": "gender_select",
+                "column": "admission.gender"
+            }
+        ]
+    }]
+}

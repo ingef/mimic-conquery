@@ -1,0 +1,53 @@
+version: "3"
+
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+  frontend:
+    image: ghcr.io/ingef/conquery-frontend:develop
+    environment:
+      - REACT_APP_API_URL=http://localhost:8088
+      - REACT_APP_IDP_ENABLE=false
+      - REACT_APP_IDP_REALM=''
+      - REACT_APP_IDP_CLIENT_ID=''
+      - REACT_APP_DISABLE_LOGIN=true
+    ports:
+      - "8000:80"
+  backend:
+    image: ghcr.io/ingef/conquery-backend:develop
+    command: server config.json
+    volumes:
+      - ./app/storage/manager:/app/storage
+      - ./config.json:/app/config.json
+    environment:
+      - CLUSTER_PORT=8082
+      - MANAGER_URL=backend
+      - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.nio=ALL-UNNAMED
+      - FORM_BACKEND_URL=http://form-api:80
+    ports:
+      - 8088:8080
+      - 8081:8081
+  shard1:
+    image: ghcr.io/ingef/conquery-backend:develop
+    command: shard config.json
+    environment:
+      - CLUSTER_PORT=8082
+      - MANAGER_URL=backend
+    volumes:
+      - ./config.json:/app/config.json
+      - ./app/storage/shard-1:/app/storage
+  shard2:
+    image: ghcr.io/ingef/conquery-backend:develop
+    command: shard config.json
+    environment:
+      - CLUSTER_PORT=8082
+      - MANAGER_URL=backend
+    volumes:
+      - ./config.json:/app/config.json
+      - ./app/storage/shard-2:/app/storage
+  form-api:
+    image: form-api:latest
+    ports:
+      - 8085:80

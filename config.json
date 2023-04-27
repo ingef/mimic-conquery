@@ -1,0 +1,106 @@
+{
+  "locale": {
+    "frontend": "en"
+  },
+  "index": {
+    "searchSplitChars": "(),;.:\"'/\t\n\r"
+  },
+  "csv": {
+    "delimeter": ";"
+  },
+  "frontend": {
+    "currency": {
+      "prefix": "€",
+      "thousandSeparator": ",",
+      "decimalSeparator": ".",
+      "decimalScale": 2
+    }
+  },
+  "server": {
+    "applicationConnectors": [
+      {
+        "type": "http",
+        "port": "${env:API_PORT:-8080}"
+      }
+    ],
+    "adminConnectors": [
+      {
+        "type": "http",
+        "port": "${env:ADMIN_PORT:-8081}"
+      }
+    ],
+    "minThreads": 4
+  },
+  "cluster": {
+    "port": "${env:CLUSTER_PORT:-0}",
+    "managerURL": "${env:MANAGER_URL:-localhost}"
+  },
+  "storage": {
+    "type": "XODUS",
+    "xodus": {
+      "logFileSize": "400 MB",
+      "memoryUsage": "1000 MB",
+      "envMonitorTxnsTimeout": "10 minutes"
+    },
+    "useWeakDictionaryCaching": false,
+    "unreadableDataDumpDirectory": "./storageDumps",
+    "removeUnreadableFromStore": false,
+    "loadEnvironmentWithMissingStores": false
+  },
+  "standalone": {
+    "numberOfShardNodes": 2
+  },
+  "preprocessor": {
+    "faultyLineThreshold": 0.03,
+    "nthreads": 20
+  },
+  "resultProviders": [
+    {
+      "type": "XLSX",
+      "config": {
+        "applicationName": "CONQUERY"
+      }
+    },
+    {
+      "type": "CSV"
+    },
+    {
+      "type": "EXTERNAL"
+    },
+    {
+      "type": "ARROW"
+    }
+  ],
+  "logging": {
+    "level": "INFO",
+    "loggers": {
+      "com.bakdata": "${env:LOGLEVEL:-DEBUG}",
+      "io.dropwizard.jersey.jackson.JsonProcessingExceptionMapper": "DEBUG"
+    },
+    "appenders": [
+      {
+        "type": "console",
+        "logFormat": "%-5level [%date{yyyy-MM-dd HH:mm:ss}]\t%logger{10}\t%mdc{location}\t%message%n"
+      },
+      {
+        "type": "file",
+        "logFormat": "%-5level [%date{yyyy-MM-dd HH:mm:ss}]\t%logger{10}\t%mdc{location}\t%message%n",
+        "currentLogFilename": "logs/current.log",
+        "archivedLogFilenamePattern": "logs/%d.log.gz",
+        "archivedFileCount": 366
+      }
+    ]
+  },
+  "plugins": [
+    {
+      "type": "FORM_BACKEND",
+      "id": "form-backend-api",
+      "baseURI": "${env:FORM_BACKEND_URL}",
+      "conqueryApiUrl": "http://${env:MANAGER_URL:-localhost}:${env:API_PORT}",
+      "authentication": {
+        "type": "API_KEY",
+        "apiKey": "YOUR_API_KEY"
+      }
+    }
+  ]
+}

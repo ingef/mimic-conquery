@@ -1,0 +1,8 @@
+ {
+    "mimic" : {
+        "name" : "mimic",
+        "label" : "Mimic IV",
+        "sources" : ["mimic"],
+        "weight" : 0
+    }  
+ }

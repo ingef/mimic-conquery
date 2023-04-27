@@ -1,0 +1,3 @@
+requests
+aiohttp>=3.7
+setuptools

@@ -1,0 +1,17 @@
+{
+    "name": "icd",
+    "columns": [
+        {
+            "name": "hadm_id",
+            "type": "STRING"
+        },
+        {
+            "name": "icd",
+            "type": "STRING"
+        },
+        {
+            "name": "stay_duration",
+            "type": "DATE_RANGE"
+        }
+    ]
+}

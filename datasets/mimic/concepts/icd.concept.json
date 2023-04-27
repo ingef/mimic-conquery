@@ -1,0 +1,36 @@
+{
+    "name": "icd",
+    "label": "ICD 10",
+    "type": "TREE",
+    "children" : [
+
+    ],
+    "selects" : [
+        {
+            "type" : "EXISTS",
+            "name" : "exists",
+            "label" : "Present"
+        },
+        {
+            "type" : "CONCEPT_VALUES",
+            "name" : "codes",
+            "label" : "ICD Codes"
+        }
+    ],
+    "connectors": [
+        {
+            "name": "icd",
+            "column": "icd.icd",
+            "validityDates": [
+                {
+                    "name": "admission_duration",
+                    "column": "icd.stay_duration"
+                }
+            ],
+            "filters": [
+            ],
+            "selects": [
+            ]
+        }
+    ]
+}

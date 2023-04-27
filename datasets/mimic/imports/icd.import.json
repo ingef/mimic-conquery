@@ -1,0 +1,36 @@
+{
+    "name": "icd",
+    "table": "icd",
+    "inputs": [
+        {
+            "sourceFile": "icd.csv",
+            "primary": {
+                "name": "subject_id",
+                "inputType": "STRING",
+                "inputColumn": "subject_id",
+                "operation": "COPY"
+            },
+            "output": [
+                {
+                    "name": "hadm_id",
+                    "inputType": "STRING",
+                    "inputColumn": "hadm_id",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "icd",
+                    "inputType": "STRING",
+                    "inputColumn": "icd",
+                    "operation": "COPY"
+                },
+                {
+                    "name": "stay_duration",
+                    "operation": "DATE_RANGE",
+                    "startColumn": "admittime",
+                    "endColumn": "dischtime",
+                    "allowOpen": true
+                }
+            ]
+        }
+    ]
+}

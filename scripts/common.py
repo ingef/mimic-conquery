@@ -69,7 +69,7 @@ class Dataset:
     weight: int
     sources: Set[str] # Can be used as a meta-selector instead of dataset names
 
-    def __init__(self, id: str, name: str, label: str, H2IK: str, sources: Set[str], weight: int = 0):
+    def __init__(self, id: str, name: str, label: str, sources: Set[str], weight: int = 0):
         self.name = name
         self.id = id
         self.label = label
@@ -83,7 +83,7 @@ class Dataset:
         return f"Dataset({self.name})"
 
     def __hash__(self):
-        return hash((self.__class__, self.name, self.label, self.h2ik, self.weight, str(self.sources)))
+        return hash((self.__class__, self.name, self.label, self.weight, str(self.sources)))
 
 
 def get_configured_arg_parser(with_api: bool = True, **kwargs) -> argparse.ArgumentParser:
@@ -91,7 +91,7 @@ def get_configured_arg_parser(with_api: bool = True, **kwargs) -> argparse.Argum
 
     parser.add_argument('--datasets', nargs='*', help="Datasets you want to use.", default=[])
 
-    parser.add_argument('--datasets-json', help='Meta data resource for the datasets to be created (datasets.json)',
+    parser.add_argument('--kassen', help='Meta data resource for the datasets to be created (datasets.json)',
                         default=Path(__file__).parent.parent / 'datasets.json', type=Path)
 
     parser.add_argument('--fast-fail', action='store_true', help="fails as soon as a requests returns a code >=400")
@@ -149,7 +149,7 @@ def get_datasets(arg_dict) -> Set[Dataset]:
 
     datasets: Set[str] = set(arg_dict['datasets'])
 
-    kassen_raw = json.load(arg_dict['datasets-json'].open("rb"))
+    kassen_raw = json.load(arg_dict['kassen'].open("rb"))
     companies = {Dataset(id=dataset, **kassen_raw[dataset]) for dataset in kassen_raw.keys()}
 
     select = {sel for sel in datasets if not sel.startswith("^")}

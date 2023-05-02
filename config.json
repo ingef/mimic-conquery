@@ -90,17 +90,5 @@
         "archivedFileCount": 366
       }
     ]
-  },
-  "plugins": [
-    {
-      "type": "FORM_BACKEND",
-      "id": "form-backend-api",
-      "baseURI": "${env:FORM_BACKEND_URL}",
-      "conqueryApiUrl": "http://${env:MANAGER_URL:-localhost}:${env:API_PORT}",
-      "authentication": {
-        "type": "API_KEY",
-        "apiKey": "YOUR_API_KEY"
-      }
-    }
-  ]
+  }
 }

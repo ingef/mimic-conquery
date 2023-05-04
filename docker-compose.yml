@@ -1,9 +1,5 @@
 version: "3"
 
-volumes:
-  postgres_data:
-    driver: local
-
 services:
   frontend:
     image: ghcr.io/ingef/conquery-frontend:develop
@@ -25,7 +21,6 @@ services:
       - CLUSTER_PORT=8082
       - MANAGER_URL=backend
       - JAVA_TOOL_OPTIONS=--add-opens=java.base/java.nio=ALL-UNNAMED
-      - FORM_BACKEND_URL=http://form-api:80
     ports:
       - 8088:8080
       - 8081:8081
@@ -45,11 +40,6 @@ services:
     environment:
       - CLUSTER_PORT=8082
       - MANAGER_URL=backend
-      - FORM_BACKEND_URL=http://form-api:80
     volumes:
       - ./config.json:/app/config.json
       - ./app/storage/shard-2:/app/storage
-  form-api:
-    image: conquery_sandbox_api:latest
-    ports:
-      - 8085:80
